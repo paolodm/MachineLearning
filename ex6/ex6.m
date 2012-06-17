@@ -134,6 +134,8 @@ pause;
 %  different values of C and sigma here.
 % 
 
+fprintf("Trying different values of C and sigma...");
+
 % Load from ex6data3: 
 % You will have X, y in your environment
 load('ex6data3.mat');

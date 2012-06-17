@@ -6,6 +6,7 @@ function word_indices = processEmail(email_contents)
 %   words contained in the email. 
 %
 
+
 % Load Vocabulary
 vocabList = getVocabList();
 
@@ -54,6 +55,10 @@ fprintf('\n==== Processed Email ====\n\n');
 % Process file
 l = 0;
 
+vocabList
+email_contents
+
+
 while ~isempty(email_contents)
 
     % Tokenize and also get rid of any punctuation
@@ -63,7 +68,7 @@ while ~isempty(email_contents)
    
     % Remove any non alphanumeric characters
     str = regexprep(str, '[^a-zA-Z0-9]', '');
-
+	
     % Stem the word 
     % (the porterStemmer sometimes has issues, so we use a try catch block)
     try str = porterStemmer(strtrim(str)); 
@@ -97,14 +102,12 @@ while ~isempty(email_contents)
     %       str2). It will return 1 only if the two strings are equivalent.
     %
 
-
-
-
-
-
-
-
-
+	for i = 1:length(vocabList)
+		vocabWord = vocabList{i};
+		if (strcmp(str, vocabWord) == 1)
+			word_indices = [word_indices; i];
+		end
+	end
 
     % =============================================================
 
